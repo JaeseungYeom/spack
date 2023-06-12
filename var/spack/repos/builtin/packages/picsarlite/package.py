@@ -49,6 +49,10 @@ class Picsarlite(MakefilePackage):
 
         if "+prod" in self.spec:
             mode = "prod"
+            """ TODO: need to add `-fallow-argument-mismatch` to the other modes if gfortran version is 10 or above
+            """
+            if comp == "gnu" and self.compiler.version >= ver(10):
+                targets.append("FARGS={0}".format("-O3 -fopenmp -JModules -ftree-vectorize -fallow-argument-mismatch"))
         elif "+prod_spectral" in self.spec:
             mode = "prod_spectral"
         elif "+debug" in self.spec:
