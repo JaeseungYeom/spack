@@ -29,7 +29,7 @@ class Ember(MakefilePackage):
         file = open("Makefile", "w")
 
         file.write("CC = mpicc\n")
-        file.write("CFLAGS = -O3 -std=c99\n")
+        file.write("CFLAGS = -O3 -std=c99 -D_POSIX_C_SOURCE=199309L\n")
         file.write("OSHMEM_CC=cc\n")
         file.write("OSHMEM_C_FLAGS=-O3 -g\n")
 
@@ -62,7 +62,7 @@ class Ember(MakefilePackage):
         cc = self.spec["mpi"].mpicc
         cflags = "-O3"
         if not self.spec.satisfies("%nvhpc@:20.11"):
-            cflags = "-O3 -std=c99"
+            cflags = "-O3 -std=c99 -D_POSIX_C_SOURCE=199309L"
         oshmem_cc = "cc"
         oshmem_c_flags = "-O3 -g"
 

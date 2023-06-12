@@ -35,7 +35,7 @@ class EcpProxyApps(BundlePackage):
     depends_on("mlperf-deepcam@master", when="+ml @4.0:")
 
     # Added with release 4.0
-    depends_on("miniamr@1.6.4", when="@4.0:")
+    depends_on("miniamr@master", when="@4.0:")
 
     # Added with release 3.0
     depends_on("miniamr@1.4.4", when="@3.0:3.1")
@@ -49,7 +49,7 @@ class EcpProxyApps(BundlePackage):
     # Added with release 2.0
     depends_on("ember@1.0.0", when="@2.0:")
     depends_on("miniqmc@0.4.0", when="@2.0:")
-    depends_on("minivite@1.0", when="@2.0:")
+    depends_on("minivite@develop", when="@2.0:")
     depends_on("picsarlite@0.1", when="@2.0:")
     depends_on("thornado-mini@1.0", when="@2.0:")
 

@@ -33,9 +33,15 @@ class ThornadoMini(MakefilePackage):
 
         file = open("Makefile", "w")
 
-        file.write(
-            "FORTRAN_mymachine = %s %s\n" % (self.spec["mpi"].mpifc, self.compiler.openmp_flag)
-        )
+        if "gfortran" in self.compiler.fc and self.compiler.version >= ver(10):
+            file.write(
+                "FORTRAN_mymachine = %s %s -fallow-argument-mismatch\n" % (self.spec["mpi"].mpifc, self.compiler.openmp_flag)
+            )
+        else:
+            file.write(
+                "FORTRAN_mymachine = %s %s\n" % (self.spec["mpi"].mpifc, self.compiler.openmp_flag)
+            )
+
         file.write(
             "FLINKER_mymachine = %s %s\n" % (self.spec["mpi"].mpifc, self.compiler.openmp_flag)
         )
